@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background-start: #0f0f1a;
+    --background-end: #1a1a2e;
+    --accent-primary: #4f46e5;
+    --accent-secondary: #06b6d4;
+    --text-primary: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    @apply bg-gradient-to-br from-[var(--background-start)] to-[var(--background-end)] text-[var(--text-primary)];
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .galaxy-background {
+    background-image: 
+      radial-gradient(circle at center, transparent 0%, var(--background-start) 100%),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23ffffff' fill-opacity='0.5'/%3E%3C/svg%3E");
+    background-size: cover, 200px 200px;
+    animation: twinkling 20s linear infinite;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-[var(--card-bg)] border border-white/10 shadow-xl;
+  }
+
+  .glass-card:hover {
+    @apply scale-105 z-10;
+    box-shadow: 0 0 30px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 10px var(--accent-primary),
+                inset 0 0 5px var(--accent-primary);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px var(--accent-primary);
+  }
+}
+
+@keyframes twinkling {
+  0% { background-position: 0 0; }
+  100% { background-position: -200px -200px; }
+}
+
+.blur-background {
+  filter: blur(4px);
+  transition: filter 0.3s ease;
+}
